@@ -40,13 +40,20 @@ let itemList = document.getElementById('items');
                     editButton.value = "Edit";
                     deleteButton.addEventListener('click',ondelete);
                     let keyValue = response.data.name;
-                    function ondelete(e){
+                    function ondelete(e)
+                    {
                         e.preventDefault();
                         let parentNode = e.target.parentNode;
                         parentNode.remove();
                         //let details = e.target
-                        localStorage.removeItem(keyValue);
-                            }
+                        let dataID = `https://crudcrud.com/api/d3833744c4ba4b649324e059604704ac/bookingData/${response.data[i]._id}`;
+            
+                        axios.delete(dataID)
+                        .then((r) =>{
+                            alert("DATA DELETED !!!")
+                        })
+                        .catch(error => console.log(error));
+                    }
                     editButton.addEventListener('click',onEdit);
                     let name = response.data.name
                     let email = response.data.email;
